@@ -1,0 +1,29 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "space" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "𐍚𐍞𐍜𐍙"
+          }
+        },
+        "kv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "𐍚𐍞𐍜𐍙"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "𐍚𐍞𐍜𐍙"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

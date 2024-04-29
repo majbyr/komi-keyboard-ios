@@ -1,0 +1,239 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "AppStore" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App Store"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App Store"
+          }
+        },
+        "kv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App Store"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App Store"
+          }
+        }
+      }
+    },
+    "GitHub" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub"
+          }
+        },
+        "kv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub"
+          }
+        }
+      }
+    },
+    "LINKS" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LINKS"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LINKIT"
+          }
+        },
+        "kv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ЫСТӦГЪЯС"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ССЫЛКИ"
+          }
+        }
+      }
+    },
+    "OpenAppSettings" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open application settings"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sovelluksen asetukset"
+          }
+        },
+        "kv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Восьт ладмӧдӧм"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открыть настройки приложения"
+          }
+        }
+      }
+    },
+    "SETTING" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SETTING"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ASETUS"
+          }
+        },
+        "kv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ЛАДМӦДӦМ"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "НАСТРОЙКА"
+          }
+        }
+      }
+    },
+    "SetupInstruction" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go to Settings > Keyboard > Enable needed layout"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Siirry Asetukset > Näppäimistö > Ota käyttöön Komi"
+          }
+        },
+        "kv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вудж Настройки > Клавиатура > Ӧзты коланасӧ"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перейти в Настройки > Клавиатура > Включить нужную раскладку"
+          }
+        }
+      }
+    },
+    "TestInput" : {
+      "comment" : "Поле ввода для тестирования",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Test input"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Testisyöte"
+          }
+        },
+        "kv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Видлы гижны"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тестовый ввод"
+          }
+        }
+      }
+    },
+    "Website" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Our webpage"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verkkosivumme"
+          }
+        },
+        "kv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Листбокным"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Наша страница"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

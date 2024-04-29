@@ -1,0 +1,29 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "space" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Komi"
+          }
+        },
+        "kv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Komi"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Komi"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

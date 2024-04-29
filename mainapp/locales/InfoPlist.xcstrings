@@ -1,0 +1,52 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "CFBundleDisplayName" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Komi Keyboard"
+          }
+        },
+        "kv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коми Шыпаспӧв"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коми Клавиатура"
+          }
+        }
+      }
+    },
+    "CFBundleName" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Komi Keyboard"
+          }
+        },
+        "kv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коми Шыпаспӧв"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коми Клавиатура"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
