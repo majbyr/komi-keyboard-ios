@@ -8,8 +8,8 @@ Komi keyboard for iOS
         
 ## Screenshots
 <img src="images/cyrl.jpg" alt="screenshots" width="240"/>
-<img src="images/latn.jpg" alt="screenshots" width="240"/>
 <img src="images/anbur.jpg" alt="screenshots" width="240"/>
+<img src="images/latn.jpg" alt="screenshots" width="240"/>
 
 ## Running compatibility
 iOS 13.0+
