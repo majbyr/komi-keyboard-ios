@@ -70,6 +70,9 @@
 		5FD9DACF2BD9FB8B008D10B9 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD9DACE2BD9FB8B008D10B9 /* KeyboardViewController.swift */; };
 		5FD9DAD32BD9FB8B008D10B9 /* cyrillic.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5FD9DACC2BD9FB8B008D10B9 /* cyrillic.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5FFA994F2BDD9FB40070429E /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 5FFA994E2BDD9FB40070429E /* Localizable.xcstrings */; };
+		5FFE9A302BE0533000B1A569 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FFE9A2F2BE0533000B1A569 /* Assets.xcassets */; };
+		5FFE9A312BE0533000B1A569 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FFE9A2F2BE0533000B1A569 /* Assets.xcassets */; };
+		5FFE9A322BE0533000B1A569 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FFE9A2F2BE0533000B1A569 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,12 +156,12 @@
 		5FD9DACC2BD9FB8B008D10B9 /* cyrillic.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = cyrillic.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FD9DACE2BD9FB8B008D10B9 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		5FD9DAD02BD9FB8B008D10B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5FE2440B2BDE970B0048D526 /* PredictiveTextModel-kpv.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = "PredictiveTextModel-kpv.mlpackage"; sourceTree = "<group>"; };
 		5FFA99452BDD9D6F0070429E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		5FFA99462BDD9D6F0070429E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5FFA99472BDD9D7F0070429E /* kv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = kv; path = kv.lproj/Main.strings; sourceTree = "<group>"; };
 		5FFA99482BDD9D7F0070429E /* kv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = kv; path = kv.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5FFA994E2BDD9FB40070429E /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		5FFE9A2F2BE0533000B1A569 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				5FD9DAB32BD9FB5E008D10B9 /* mainapp */,
+				5FFE9A2E2BE0526900B1A569 /* keyboard */,
 				5FD9DACD2BD9FB8B008D10B9 /* cyrillic */,
 				5F8A91FF2BDDC3A7003A279C /* latin */,
 				5F8A922B2BDDC61F003A279C /* anbur */,
@@ -285,19 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				5F8A91F72BDDC0E7003A279C /* locales */,
-				5FD9DACE2BD9FB8B008D10B9 /* KeyboardViewController.swift */,
-				5F244F3A2BDE69B800BEEF06 /* ToolbarView.swift */,
-				5F86F9F82BD9FC2D00F64479 /* CustomKeyButton.swift */,
-				5F86F9FA2BD9FC2D00F64479 /* KeyboardHeightDetector.swift */,
 				5F86F9F92BD9FC2D00F64479 /* KeyboardLayouts.swift */,
-				5F86F9F22BD9FC2D00F64479 /* KeyboardView.swift */,
-				5F86F9F42BD9FC2D00F64479 /* KeyPopup.swift */,
-				5F3CA7F82BDAF8CF00A3B96F /* SubcharPopup.swift */,
-				5F86F9F72BD9FC2D00F64479 /* KeyRow.swift */,
-				5F86F9F12BD9FC2D00F64479 /* KeyBase.swift */,
-				5F86F9F32BD9FC2D00F64479 /* CharacterKey.swift */,
-				5F86F9F62BD9FC2D00F64479 /* SpecialKey.swift */,
-				5F86F9F52BD9FC2D00F64479 /* UIColor+Extensions.swift */,
 				5FD9DAD02BD9FB8B008D10B9 /* Info.plist */,
 			);
 			path = cyrillic;
@@ -306,11 +298,30 @@
 		5FFA994D2BDD9F9A0070429E /* locales */ = {
 			isa = PBXGroup;
 			children = (
-				5FE2440B2BDE970B0048D526 /* PredictiveTextModel-kpv.mlpackage */,
 				5FFA994E2BDD9FB40070429E /* Localizable.xcstrings */,
 				5FC27A042BDDAF6500F2F574 /* InfoPlist.xcstrings */,
 			);
 			path = locales;
+			sourceTree = "<group>";
+		};
+		5FFE9A2E2BE0526900B1A569 /* keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				5FFE9A2F2BE0533000B1A569 /* Assets.xcassets */,
+				5FD9DACE2BD9FB8B008D10B9 /* KeyboardViewController.swift */,
+				5F244F3A2BDE69B800BEEF06 /* ToolbarView.swift */,
+				5F86F9F82BD9FC2D00F64479 /* CustomKeyButton.swift */,
+				5F86F9FA2BD9FC2D00F64479 /* KeyboardHeightDetector.swift */,
+				5F86F9F22BD9FC2D00F64479 /* KeyboardView.swift */,
+				5F86F9F42BD9FC2D00F64479 /* KeyPopup.swift */,
+				5F3CA7F82BDAF8CF00A3B96F /* SubcharPopup.swift */,
+				5F86F9F72BD9FC2D00F64479 /* KeyRow.swift */,
+				5F86F9F12BD9FC2D00F64479 /* KeyBase.swift */,
+				5F86F9F32BD9FC2D00F64479 /* CharacterKey.swift */,
+				5F86F9F62BD9FC2D00F64479 /* SpecialKey.swift */,
+				5F86F9F52BD9FC2D00F64479 /* UIColor+Extensions.swift */,
+			);
+			path = keyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -442,6 +453,7 @@
 			files = (
 				5F8A92472BDDD16F003A279C /* Assets.xcassets in Resources */,
 				5F8A92242BDDC48B003A279C /* InfoPlist.xcstrings in Resources */,
+				5FFE9A312BE0533000B1A569 /* Assets.xcassets in Resources */,
 				5F244F332BDE2E6500BEEF06 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -452,6 +464,7 @@
 			files = (
 				5F8A92482BDDD170003A279C /* Assets.xcassets in Resources */,
 				5F8A92452BDDC749003A279C /* InfoPlist.xcstrings in Resources */,
+				5FFE9A322BE0533000B1A569 /* Assets.xcassets in Resources */,
 				5F244F352BDE331900BEEF06 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -474,6 +487,7 @@
 			files = (
 				5F8A92462BDDD16F003A279C /* Assets.xcassets in Resources */,
 				5F8A91F92BDDC106003A279C /* InfoPlist.xcstrings in Resources */,
+				5FFE9A302BE0533000B1A569 /* Assets.xcassets in Resources */,
 				5F244F382BDE333A00BEEF06 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -603,7 +617,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DEVELOPMENT_TEAM = RJL88SHRZC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = latin/Info.plist;
@@ -615,7 +629,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.majbyr.mijankeyboard.latin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -629,7 +643,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DEVELOPMENT_TEAM = RJL88SHRZC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = latin/Info.plist;
@@ -641,7 +655,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.majbyr.mijankeyboard.latin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -655,7 +669,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DEVELOPMENT_TEAM = RJL88SHRZC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = anbur/Info.plist;
@@ -667,7 +681,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.majbyr.mijankeyboard.anbur;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -681,7 +695,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DEVELOPMENT_TEAM = RJL88SHRZC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = anbur/Info.plist;
@@ -693,7 +707,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.majbyr.mijankeyboard.anbur;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -738,6 +752,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -758,6 +773,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.2.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -802,6 +818,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -816,6 +833,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.2.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -831,7 +849,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DEVELOPMENT_TEAM = RJL88SHRZC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = mainapp/Info.plist;
@@ -847,7 +865,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.majbyr.mijankeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -863,7 +881,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DEVELOPMENT_TEAM = RJL88SHRZC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = mainapp/Info.plist;
@@ -879,7 +897,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.majbyr.mijankeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -892,7 +910,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DEVELOPMENT_TEAM = RJL88SHRZC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = cyrillic/Info.plist;
@@ -904,7 +922,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.majbyr.mijankeyboard.komi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -918,7 +936,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DEVELOPMENT_TEAM = RJL88SHRZC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = cyrillic/Info.plist;
@@ -930,7 +948,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.majbyr.mijankeyboard.komi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

@@ -7,9 +7,9 @@ protocol KeyDelegate: AnyObject {
     func keyDidTap(character: String)
     func startContinuousDelete()
     func stopContinuousDelete()
-    func handleLongPress()
     func handleDoubleTap(character: String)
     func handleCursorMove(cursorMovement: Int)
+    func setGlobeKeySelector(globeKey: SpecialKey)
     func isShifted() -> Bool
 }
 

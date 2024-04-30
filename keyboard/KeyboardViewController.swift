@@ -32,7 +32,6 @@ class KeyboardViewController: UIInputViewController {
         self.mainKeyboardView = KeyboardView(layout: .main, delegate: self, includeGlobeKey: needsGlobeKey)
         self.view.addSubview(self.mainKeyboardView)
         self.setupConstraintsForCurrentKeyboardView()
-        
         self.punctuationKeyboardView = KeyboardView(layout: .punctuation, delegate: self, includeGlobeKey: needsGlobeKey)
         self.secondaryPunctuationKeyboardView = KeyboardView(layout: .secondaryPunctuation, delegate: self, includeGlobeKey: needsGlobeKey)
     }
@@ -220,8 +219,8 @@ extension KeyboardViewController: KeyDelegate {
             handleAutoCapitalization()
 
         case "globe":
-            advanceToNextInputMode()
-            
+            //advanceToNextInputMode()
+            break
         case "shift":
             isLayoutCapsLocked = false
             if isLayoutShifted {
@@ -242,15 +241,15 @@ extension KeyboardViewController: KeyDelegate {
                 toggleShift(on: false)
             }
         }
-        toolbarView.updatePredictions()
-    }
-    
-    func handleLongPress() {
-        
+        // toolbarView.updatePredictions()
     }
     
     func handleCursorMove(cursorMovement: Int) {
         textDocumentProxy.adjustTextPosition(byCharacterOffset: cursorMovement)
+    }
+    
+    func setGlobeKeySelector(globeKey: SpecialKey) {
+        globeKey.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
     }
     
     func handleDoubleTap(character: String) {
@@ -290,7 +289,6 @@ extension KeyboardViewController: KeyDelegate {
     
     private func handleAutoCapitalization() {
         if let context = textDocumentProxy.documentContextBeforeInput {
-            let endOfSentencePunctuation: Set<Character> = [".", "!", "?"]
             let trimmedContext = context.trimmingCharacters(in:.whitespacesAndNewlines)
             if trimmedContext.isEmpty ||
                 context.last == "\n" ||

@@ -11,6 +11,14 @@ class SpecialKey: KeyBase {
     private var isCursorMovement: Bool = false
     private var isCursorMoved: Bool = false
     
+    weak override var delegate: KeyDelegate? {
+        didSet {
+            if keyLabel == "globe" {
+                delegate?.setGlobeKeySelector(globeKey: self)
+            }
+        }
+    }
+    
     init(keyLabel: String) {
         self.keyLabel = keyLabel
         super.init(frame: .zero)
@@ -54,6 +62,7 @@ class SpecialKey: KeyBase {
             self.setTitle("", for: .normal)
             self.imageView?.tintColor = UIColor.dynamicTextColor
             self.imageView?.contentMode = .scaleAspectFit
+            
         case "return":
             self.keyColor = UIColor.dynamicActionKeyColor
             self.fontSize = 0
@@ -83,7 +92,7 @@ class SpecialKey: KeyBase {
         }
 
         if let titleLabel = self.titleLabel, let text = titleLabel.text {
-            let textSize = text.size(withAttributes: [NSAttributedString.Key.font: titleLabel.font])
+            let textSize = text.size(withAttributes: [NSAttributedString.Key.font: titleLabel.font ?? UIFont.systemFont(ofSize: 0)])
             let textFrame = CGRect(x: (bounds.width - textSize.width) / 2.0,
                                    y: bounds.height - textSize.height - 5, // Position title at the bottom or adjust as needed
                                    width: textSize.width,
@@ -165,8 +174,6 @@ class SpecialKey: KeyBase {
             isCursorMoved ? isCursorMoved = false : delegate?.keyDidTap(character: keyLabel)
         }
         lastTapTime = currentTime
-        
-        
     }
     
     @objc private func handleLongPress() {
@@ -178,5 +185,6 @@ class SpecialKey: KeyBase {
             delegate?.startContinuousDelete()
         }
     }
+    
 }
 
