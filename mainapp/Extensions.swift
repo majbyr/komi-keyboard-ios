@@ -12,6 +12,14 @@ extension UIButton {
             mainImageView?.translatesAutoresizingMaskIntoConstraints = false
             mainImageView?.widthAnchor.constraint(equalToConstant: 30).isActive = true
             mainImageView?.heightAnchor.constraint(equalToConstant: 30).isActive = true
+
+            // Setting the border properties
+            mainImageView?.layer.borderWidth = 0.3
+            mainImageView?.layer.borderColor = UIColor.outlineColor.cgColor
+
+            // Optionally, you can add corner radius to make the outline rounded
+            mainImageView?.layer.cornerRadius = 6
+            mainImageView?.layer.masksToBounds = true
         }
         
         // Setup the arrow image
@@ -46,17 +54,17 @@ extension UIButton {
             stackView.bottomAnchor.constraint(equalTo: button.bottomAnchor, constant: -10)
         ])
         
-        // Setup the underline view
-        let underlineView = UIView()
-        underlineView.backgroundColor = .systemGray3
-        underlineView.translatesAutoresizingMaskIntoConstraints = false
-        button.addSubview(underlineView)
+        // Setup the separater view
+        let separatorView = UIView()
+        separatorView.backgroundColor = .systemGray3
+        separatorView.translatesAutoresizingMaskIntoConstraints = false
+        button.addSubview(separatorView)
         
         NSLayoutConstraint.activate([
-            underlineView.heightAnchor.constraint(equalToConstant: 0.3),
-            underlineView.leadingAnchor.constraint(equalTo: mainImageView!.trailingAnchor, constant: 10),
-            underlineView.trailingAnchor.constraint(equalTo: button.trailingAnchor),
-            underlineView.topAnchor.constraint(equalTo: button.topAnchor, constant: -1)
+            separatorView.heightAnchor.constraint(equalToConstant: 0.3),
+            separatorView.leadingAnchor.constraint(equalTo: mainImageView!.trailingAnchor, constant: 10),
+            separatorView.trailingAnchor.constraint(equalTo: button.trailingAnchor),
+            separatorView.topAnchor.constraint(equalTo: button.topAnchor, constant: -1)
         ])
         
         // Add target action
