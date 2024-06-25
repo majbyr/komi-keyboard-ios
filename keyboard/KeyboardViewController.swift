@@ -36,7 +36,7 @@ class KeyboardViewController: UIInputViewController {
     }
     
     private func startPollingForInputChanges() {
-        pollTimer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(checkInputChanges), userInfo: nil, repeats: true)
+        pollTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(checkInputChanges), userInfo: nil, repeats: true)
     }
     
     @objc private func checkInputChanges() {
