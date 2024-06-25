@@ -33,7 +33,7 @@ class MenuStackView: UIView {
         buttonsStackView.alignment = .fill
         buttonsStackView.spacing = 0
         buttonsStackView.layer.cornerRadius = 10
-        buttonsStackView.backgroundColor = .systemGray6
+        buttonsStackView.backgroundColor = .dynamicFieldColor
         buttonsStackView.clipsToBounds = true
 
         for detail in details {

@@ -8,7 +8,7 @@ extension UIColor {
     static let darkActionButton : UIColor = UIColor(red: 0.667, green: 0.667, blue: 0.667, alpha: 0.28)
     static let darkPopup        : UIColor = UIColor(red: 112.0 / 255, green: 112.0 / 255, blue: 112.0 / 255, alpha: 1)
     
-    static let outlineColor     : UIColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+    static let outlineColor     : UIColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.333)
 
     
     @available(iOSApplicationExtension 13.0, *)

@@ -10,6 +10,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     private func configureUI() {
         _ = HeaderViewConfigurator(view: view)
+        view.backgroundColor = .dynamicBackgroundColor
         setupSettingsMenu()
         setupTextField()
         setupLinksMenu()
