@@ -15,6 +15,7 @@ class KeyboardViewController: UIInputViewController {
     
     var keyboardHeightConstraint: NSLayoutConstraint?
     var deleteTimer: Timer?
+    var pollTimer: Timer?
     
     let keyboardHeight: CGFloat = Calculator.getKeyboardHeight()
     let toolbarHeight: CGFloat = Calculator.getToolbar()
@@ -23,11 +24,31 @@ class KeyboardViewController: UIInputViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initializeKeyboardViews()        
+        initilizeToolbarView()
+        initializeKeyboardViews()
+        handleAutoCapitalization()
+        startPollingForInputChanges()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        stopPollingForInputChanges()
+    }
+    
+    private func startPollingForInputChanges() {
+        pollTimer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(checkInputChanges), userInfo: nil, repeats: true)
+    }
+    
+    @objc private func checkInputChanges() {
+        handleAutoCapitalization()
+    }
+
+    private func stopPollingForInputChanges() {
+        pollTimer?.invalidate()
+        pollTimer = nil
+    }
+
     private func initializeKeyboardViews() {
-        initilizeToolbarView()
         let needsGlobeKey = self.needsInputModeSwitchKey
         self.mainKeyboardView = KeyboardView(layout: .main, delegate: self, includeGlobeKey: needsGlobeKey)
         self.view.addSubview(self.mainKeyboardView)
@@ -124,8 +145,6 @@ class KeyboardViewController: UIInputViewController {
     private func handleLayoutSet() {
         if let context = textDocumentProxy.documentContextBeforeInput, context.trimmingCharacters(in:.whitespacesAndNewlines).isEmpty {
             toggleShift(on: true)
-        } else {
-            handleAutoCapitalization()
         }
     }
     
@@ -181,11 +200,14 @@ class KeyboardViewController: UIInputViewController {
 
 extension KeyboardViewController: KeyDelegate {
     func startContinuousDelete() {
+        if (pollTimer == nil) {
+            startPollingForInputChanges()
+        }
+        
         deleteTimer?.invalidate()
         deleteTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
             if let context = self?.textDocumentProxy.documentContextBeforeInput,!context.isEmpty {
                 self?.textDocumentProxy.deleteBackward()
-                self?.handleAutoCapitalization()
                 AudioServicesPlaySystemSound(1155)
             } else {
                 self?.deleteTimer?.invalidate()
@@ -204,23 +226,25 @@ extension KeyboardViewController: KeyDelegate {
     }
     
     func keyDidTap(character: String) {
+        stopPollingForInputChanges()
         switch character {
         case "backspace":
             textDocumentProxy.deleteBackward()
-            handleAutoCapitalization()
+            startPollingForInputChanges()
         case "space":
             textDocumentProxy.insertText(" ")
             if !isMainKeyboard {
                 switchToMainKeyboard()
             }
-            handleAutoCapitalization()
+            startPollingForInputChanges()
+
         case "return":
             textDocumentProxy.insertText("\n")
-            handleAutoCapitalization()
+            startPollingForInputChanges()
 
         case "globe":
-            //advanceToNextInputMode()
             break
+
         case "shift":
             isLayoutCapsLocked = false
             if isLayoutShifted {
@@ -240,8 +264,9 @@ extension KeyboardViewController: KeyDelegate {
             if isLayoutShifted && !isLayoutCapsLocked {
                 toggleShift(on: false)
             }
+            startPollingForInputChanges()
         }
-        // toolbarView.updatePredictions()
+        toolbarView.updatePredictions()
     }
     
     func handleCursorMove(cursorMovement: Int) {
@@ -256,7 +281,6 @@ extension KeyboardViewController: KeyDelegate {
         switch character {
         case "backspace":
             textDocumentProxy.deleteBackward()
-            handleAutoCapitalization()
         case "space":
             handleDoubleTapSpace()
         case "return":
