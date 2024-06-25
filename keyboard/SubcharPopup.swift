@@ -6,13 +6,13 @@ class SubcharPopup: UIView {
     private var buttons: [UIButton] = []
     var selectionHandler: ((String) -> Void)?
     private var selectedButton: UIButton?
-    private var subchars: [String] // Add this line
+    private var subchars: [String]
 
     init(subchars: [String], isUppercase: Bool) {
         self.subchars = isUppercase ? subchars.map { $0.uppercased() } : subchars
-        super.init(frame: .zero) // Add this line
+        super.init(frame: .zero)
         configureView()
-        createButtons(for: self.subchars) // Use self.subchars here
+        createButtons(for: self.subchars)
     }
 
     required init?(coder: NSCoder) {
