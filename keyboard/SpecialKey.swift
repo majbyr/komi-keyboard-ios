@@ -168,7 +168,7 @@ class SpecialKey: KeyBase {
     
     @objc private func keyTapped() {
         let currentTime = Date()
-        if let lastTapTime = lastTapTime, currentTime.timeIntervalSince(lastTapTime) <= 0.5 {
+        if let lastTapTime = lastTapTime, currentTime.timeIntervalSince(lastTapTime) <= 0.2 {
             delegate?.handleDoubleTap(character: keyLabel)
         } else {
             isCursorMoved ? isCursorMoved = false : delegate?.keyDidTap(character: keyLabel)
