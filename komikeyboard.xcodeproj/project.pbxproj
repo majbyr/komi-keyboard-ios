@@ -61,6 +61,7 @@
 		5F8A92472BDDD16F003A279C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FD9DABD2BD9FB5F008D10B9 /* Assets.xcassets */; };
 		5F8A92482BDDD170003A279C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FD9DABD2BD9FB5F008D10B9 /* Assets.xcassets */; };
 		5FC27A052BDDAF6500F2F574 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 5FC27A042BDDAF6500F2F574 /* InfoPlist.xcstrings */; };
+		5FCBB0CF2C2ACBD400D980BC /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F86F9F52BD9FC2D00F64479 /* UIColor+Extensions.swift */; };
 		5FD9DAB52BD9FB5E008D10B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD9DAB42BD9FB5E008D10B9 /* AppDelegate.swift */; };
 		5FD9DAB72BD9FB5E008D10B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD9DAB62BD9FB5E008D10B9 /* SceneDelegate.swift */; };
 		5FD9DAB92BD9FB5E008D10B9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD9DAB82BD9FB5E008D10B9 /* ViewController.swift */; };
@@ -281,6 +282,7 @@
 				5FD9DABD2BD9FB5F008D10B9 /* Assets.xcassets */,
 				5FD9DABF2BD9FB5F008D10B9 /* LaunchScreen.storyboard */,
 				5FD9DAC22BD9FB5F008D10B9 /* Info.plist */,
+				5F86F9F52BD9FC2D00F64479 /* UIColor+Extensions.swift */,
 			);
 			path = mainapp;
 			sourceTree = "<group>";
@@ -319,7 +321,6 @@
 				5F86F9F12BD9FC2D00F64479 /* KeyBase.swift */,
 				5F86F9F32BD9FC2D00F64479 /* CharacterKey.swift */,
 				5F86F9F62BD9FC2D00F64479 /* SpecialKey.swift */,
-				5F86F9F52BD9FC2D00F64479 /* UIColor+Extensions.swift */,
 			);
 			path = keyboard;
 			sourceTree = "<group>";
@@ -542,6 +543,7 @@
 				5F86F9EE2BD9FC2000F64479 /* Extensions.swift in Sources */,
 				5FD9DAB92BD9FB5E008D10B9 /* ViewController.swift in Sources */,
 				5F86F9F02BD9FC2000F64479 /* HeaderViewConfigurator.swift in Sources */,
+				5FCBB0CF2C2ACBD400D980BC /* UIColor+Extensions.swift in Sources */,
 				5FD9DAB52BD9FB5E008D10B9 /* AppDelegate.swift in Sources */,
 				5F86F9EF2BD9FC2000F64479 /* TextField.swift in Sources */,
 				5F86F9ED2BD9FC2000F64479 /* MenuStackView.swift .swift in Sources */,
