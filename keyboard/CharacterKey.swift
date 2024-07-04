@@ -34,6 +34,7 @@ class CharacterKey: KeyBase {
         setTitle(character, for: .normal)
         setTitleColor(UIColor.clear, for: .normal)
         addTarget(self, action: #selector(keyTapped), for: .touchUpInside)
+        self.keyColor = .dynamicKeyColor
     }
 
     override func draw(_ rect: CGRect) {

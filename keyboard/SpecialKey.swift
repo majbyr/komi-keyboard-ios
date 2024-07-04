@@ -43,6 +43,7 @@ class SpecialKey: KeyBase {
             self.setImage(UIImage(named: "delete.left"), for: .normal)
         case "space":
             self.fontSize = 14
+            self.keyColor = .dynamicKeyColor
         case "⌫":
             self.keyColor = UIColor.dynamicActionKeyColor
             self.fontSize = 22
