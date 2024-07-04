@@ -2,8 +2,41 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
+    var scrollView: UIScrollView!
+    var contentView: UIView!
+
+    private func setupScrollView() {
+        scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(scrollView)
+        
+        contentView = UIView()
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(contentView)
+
+        // Setup constraints for scrollView
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+
+        // Setup constraints for contentView
+        NSLayoutConstraint.activate([
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+        ])
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupScrollView()
         configureUI()
         setupConstraints()
     }
@@ -16,10 +49,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         setupLinksMenu()
     }
     
+    
     private func setupTextField() {
         let textField = TextField()
         NSLayoutConstraint.activate([textField.heightAnchor.constraint(equalToConstant: 45)])
-        view.addSubview(textField)
+        contentView.addSubview(textField)
         textField.delegate = self
     }
     
@@ -30,7 +64,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             buttonDetails: [
                 (title: NSLocalizedString("OpenAppSettings", comment: ""), imageName: "settings", target: self, action: #selector(openSettings))])
         
-        view.addSubview(settingsStackView)
+        contentView.addSubview(settingsStackView)
     
     }
     
@@ -45,32 +79,40 @@ class ViewController: UIViewController, UITextFieldDelegate {
             ]
         )
 
-        view.addSubview(linksStackView)
+        contentView.addSubview(linksStackView)
     
     }
     
     private func setupConstraints() {
         var previousSubview: UIView?
 
-        for subview in view.subviews {
+        for subview in contentView.subviews {
             subview.translatesAutoresizingMaskIntoConstraints = false
 
             // First subview constraints to the top of the safe area layout guide
             if let previous = previousSubview {
                 NSLayoutConstraint.activate([
                     subview.topAnchor.constraint(equalTo: previous.bottomAnchor, constant: 30),
-                    subview.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-                    subview.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+                    subview.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                    subview.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
                 ])
             } else {
                 NSLayoutConstraint.activate([
-                    subview.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-                    subview.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-                    subview.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+                    subview.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
+                    subview.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                    subview.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
                 ])
             }
             
             previousSubview = subview // Update the previous subview reference to the current one
+        }
+        
+        if let firstSubview = contentView.subviews.first {
+            firstSubview.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40).isActive = true
+        }
+        
+        if let lastSubview = contentView.subviews.last {
+            lastSubview.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20).isActive = true
         }
     }
 
