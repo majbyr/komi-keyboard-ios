@@ -14,6 +14,15 @@ class KeyRow: UIView {
         self.keys = keys.map { keyLabel in
             specialKeysLabels.contains(keyLabel) ? SpecialKey(keyLabel: keyLabel) : CharacterKey(character: keyLabel, hint: hints[keyLabel] ?? "", subkeys: subkeys[keyLabel] ?? [])
         }
+        
+        if keys.count < biggestRowLength && self.keys.filter({ $0 is CharacterKey }).count > 5 {
+            if let firstCharacterKeyIndex = self.keys.firstIndex(where: { $0 is CharacterKey }),
+               let lastCharacterKeyIndex = self.keys.lastIndex(where: { $0 is CharacterKey }) {
+                self.keys.insert(InvisibleKey(), at: firstCharacterKeyIndex)
+                self.keys.insert(InvisibleKey(), at: lastCharacterKeyIndex + 2)
+            }
+        }
+        
         setupRow()
     }
 
@@ -23,6 +32,12 @@ class KeyRow: UIView {
 
     private func setupRow() {
         let standardMultiplier = 1.0 / CGFloat(biggestRowLength)
+        
+        if keys.count < biggestRowLength && keys.first is CharacterKey {
+            let invisibleKey = InvisibleKey()
+            invisibleKey.backgroundColor = .systemPink
+            keys.append(invisibleKey)
+        }
         
         keys.forEach { key in
             addSubview(key)
@@ -35,15 +50,14 @@ class KeyRow: UIView {
     private func setupKeyConstraints(key: KeyBase, standardMultiplier: CGFloat) {
         key.topAnchor.constraint(equalTo: topAnchor).isActive = true
         key.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        
+        let widthMultiplier = calculateMultiplierForKey(key: key, standardMultiplier: standardMultiplier)
+        key.widthAnchor.constraint(equalTo: widthAnchor, multiplier: widthMultiplier).isActive = true
+
         if let index = keys.firstIndex(of: key) {
             key.leadingAnchor.constraint(equalTo: index == 0 ? self.leadingAnchor : keys[index - 1].trailingAnchor).isActive = true
 
-            if index == keys.count - 1 {
+            if index == keys.count - 1 && key is SpecialKey {
                 key.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-            } else {
-                let multiplier = calculateMultiplierForKey(key: key, standardMultiplier: standardMultiplier)
-                key.widthAnchor.constraint(equalTo: widthAnchor, multiplier: multiplier).isActive = true
             }
         }
     }
@@ -77,6 +91,15 @@ class KeyRow: UIView {
             return 1.0 / CGFloat(keys.count)
         } else if specialKey {
             return keys.count == biggestRowLength ? standardMultiplier : 1.25 * standardMultiplier
+        } else if key is InvisibleKey {
+            if isSpaceRow {
+                return 0
+            }
+            var multiplier = 1.0
+            multiplier -= standardMultiplier * CGFloat(characterKeysCount)
+            multiplier -= standardMultiplier * 2.5 * CGFloat(specialKeysCount)
+            
+            return multiplier / 2
         } else {
             return standardMultiplier
         }
