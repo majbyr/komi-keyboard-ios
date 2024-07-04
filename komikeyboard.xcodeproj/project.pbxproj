@@ -13,6 +13,9 @@
 		5F244F3B2BDE69B800BEEF06 /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F244F3A2BDE69B800BEEF06 /* ToolbarView.swift */; };
 		5F244F3C2BDE69B800BEEF06 /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F244F3A2BDE69B800BEEF06 /* ToolbarView.swift */; };
 		5F244F3D2BDE69B800BEEF06 /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F244F3A2BDE69B800BEEF06 /* ToolbarView.swift */; };
+		5F24A0D22C36D81A00861EDF /* InvisibleKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F24A0D12C36D81A00861EDF /* InvisibleKey.swift */; };
+		5F24A0D32C36D81A00861EDF /* InvisibleKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F24A0D12C36D81A00861EDF /* InvisibleKey.swift */; };
+		5F24A0D42C36D81A00861EDF /* InvisibleKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F24A0D12C36D81A00861EDF /* InvisibleKey.swift */; };
 		5F3CA7F92BDAF8CF00A3B96F /* SubcharPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3CA7F82BDAF8CF00A3B96F /* SubcharPopup.swift */; };
 		5F86F9ED2BD9FC2000F64479 /* MenuStackView.swift .swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F86F9E92BD9FC2000F64479 /* MenuStackView.swift .swift */; };
 		5F86F9EE2BD9FC2000F64479 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F86F9EA2BD9FC2000F64479 /* Extensions.swift */; };
@@ -121,6 +124,7 @@
 		5F244F342BDE331900BEEF06 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		5F244F362BDE333300BEEF06 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		5F244F3A2BDE69B800BEEF06 /* ToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarView.swift; sourceTree = "<group>"; };
+		5F24A0D12C36D81A00861EDF /* InvisibleKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvisibleKey.swift; sourceTree = "<group>"; };
 		5F3CA7F82BDAF8CF00A3B96F /* SubcharPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcharPopup.swift; sourceTree = "<group>"; };
 		5F86F9E92BD9FC2000F64479 /* MenuStackView.swift .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MenuStackView.swift .swift"; sourceTree = "<group>"; };
 		5F86F9EA2BD9FC2000F64479 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -321,6 +325,7 @@
 				5F86F9F12BD9FC2D00F64479 /* KeyBase.swift */,
 				5F86F9F32BD9FC2D00F64479 /* CharacterKey.swift */,
 				5F86F9F62BD9FC2D00F64479 /* SpecialKey.swift */,
+				5F24A0D12C36D81A00861EDF /* InvisibleKey.swift */,
 			);
 			path = keyboard;
 			sourceTree = "<group>";
@@ -503,6 +508,7 @@
 				5F8A92172BDDC3E7003A279C /* KeyPopup.swift in Sources */,
 				5F8A92182BDDC3E7003A279C /* SubcharPopup.swift in Sources */,
 				5F8A921B2BDDC3E7003A279C /* KeyboardHeightDetector.swift in Sources */,
+				5F24A0D32C36D81A00861EDF /* InvisibleKey.swift in Sources */,
 				5F8A921D2BDDC3E7003A279C /* KeyboardView.swift in Sources */,
 				5F8A92192BDDC3E7003A279C /* CustomKeyButton.swift in Sources */,
 				5F8A921E2BDDC3E7003A279C /* KeyboardViewController.swift in Sources */,
@@ -523,6 +529,7 @@
 				5F8A923B2BDDC69A003A279C /* CustomKeyButton.swift in Sources */,
 				5F8A923D2BDDC69A003A279C /* KeyboardView.swift in Sources */,
 				5F8A923A2BDDC69A003A279C /* KeyboardHeightDetector.swift in Sources */,
+				5F24A0D42C36D81A00861EDF /* InvisibleKey.swift in Sources */,
 				5F8A923C2BDDC69A003A279C /* KeyBase.swift in Sources */,
 				5F8A923E2BDDC69A003A279C /* KeyboardViewController.swift in Sources */,
 				5F8A92372BDDC69A003A279C /* KeyPopup.swift in Sources */,
@@ -558,6 +565,7 @@
 				5F86FA012BD9FC2D00F64479 /* KeyRow.swift in Sources */,
 				5F3CA7F92BDAF8CF00A3B96F /* SubcharPopup.swift in Sources */,
 				5F86F9FE2BD9FC2D00F64479 /* KeyPopup.swift in Sources */,
+				5F24A0D22C36D81A00861EDF /* InvisibleKey.swift in Sources */,
 				5F86FA042BD9FC2D00F64479 /* KeyboardHeightDetector.swift in Sources */,
 				5F86FA032BD9FC2D00F64479 /* KeyboardLayouts.swift in Sources */,
 				5F86FA002BD9FC2D00F64479 /* SpecialKey.swift in Sources */,
