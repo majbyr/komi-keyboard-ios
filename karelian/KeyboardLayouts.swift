@@ -1,60 +1,130 @@
-//
-//  KeyboardViewController.swift
-//  karelian
-//
-//  Created by Aleksei Ivanov on 04.07.2024.
-//
+// KeyboardLayouts.swift
 
-import UIKit
+struct KeyboardLayouts {
+    var keys: [[String]]
+    var hints: [String:String] = [:]
+    var subchars: [String:[String]] = [:]
+    
+    static let main = KeyboardLayouts(
+        keys: [
+            ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
+            ["a", "s", "d", "f", "g", "h", "j", "k", "l", "\'"],
+            ["shift", "z", "x", "c", "v", "b", "n", "m", "backspace"],
+            ["123", "globe", "ö", "space", ".", "return"]
+        ],
+        hints: [
 
-class KeyboardViewController: UIInputViewController {
+            "t":"ť",
+            "o":"ö",
+            "u":"ü",
 
-    @IBOutlet var nextKeyboardButton: UIButton!
-    
-    override func updateViewConstraints() {
-        super.updateViewConstraints()
-        
-        // Add custom view sizing constraints here
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Perform custom UI setup here
-        self.nextKeyboardButton = UIButton(type: .system)
-        
-        self.nextKeyboardButton.setTitle(NSLocalizedString("Next Keyboard", comment: "Title for 'Next Keyboard' button"), for: [])
-        self.nextKeyboardButton.sizeToFit()
-        self.nextKeyboardButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.nextKeyboardButton.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
-        
-        self.view.addSubview(self.nextKeyboardButton)
-        
-        self.nextKeyboardButton.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        self.nextKeyboardButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-    }
-    
-    override func viewWillLayoutSubviews() {
-        self.nextKeyboardButton.isHidden = !self.needsInputModeSwitchKey
-        super.viewWillLayoutSubviews()
-    }
-    
-    override func textWillChange(_ textInput: UITextInput?) {
-        // The app is about to change the document's contents. Perform any preparation here.
-    }
-    
-    override func textDidChange(_ textInput: UITextInput?) {
-        // The app has just changed the document's contents, the document context has been updated.
-        
-        var textColor: UIColor
-        let proxy = self.textDocumentProxy
-        if proxy.keyboardAppearance == UIKeyboardAppearance.dark {
-            textColor = UIColor.white
-        } else {
-            textColor = UIColor.black
-        }
-        self.nextKeyboardButton.setTitleColor(textColor, for: [])
-    }
+            "a":"ä",
+            "s":"š",
+            "d":"ď",
+            "f":"ś",
+            "h":"ž",
+            "k":"ć",
+            "l":"ľ",
 
+            "z":"ź",
+            "c":"ć",
+            "v":"ź",
+            "n":"ń",
+
+            "ö":"õ"
+        ],
+        
+        subchars: [
+
+            "t": ["ť"],
+            "o": ["ö", "õ"],
+            "u": ["ü"],
+
+            "a": ["ä", "å"],
+            "s": ["š", "ś"],
+            "d": ["ď"],
+            "f": ["ś"],
+            "h": ["ž"],
+            "k": ["ć"],
+            "l": ["ľ", "ł"],
+            "\'": ["\'", "‘"],
+
+            "z": ["ź", "ž"],
+            "x": ["č"],
+            "c": ["ć", "č"],
+            "v": ["ź", "ž"],
+            "n": ["ń", "ň"],
+            
+            "ö": ["õ", "ő", "ø", "œ"],
+            ".": [",", "?", "!"]
+        
+        ])
+    
+    static let punctuation = KeyboardLayouts(
+        keys: [
+            ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
+            ["-", "/", ":", ";", "(", ")", "$", "&", "@", "\""],
+            ["#+=", ".", ",", "?", "!", "\'", "backspace"],
+            ["ABC", "globe", "space", "return"]
+        ],
+        subchars: [
+            "1": ["1", "¹"],
+            "2": ["2", "²"],
+            "3": ["3", "³"],
+            "4": ["4", "¼"],
+            "5": ["5", "½"],
+            "6": ["6", "¾"],
+            "7": ["7", "⅞"],
+            "8": ["8", "∞"],
+            "9": ["9", "°"],
+            "0": ["0", "º"],
+            "-": ["-", "–", "—", "−", "_"],
+            "/": ["/", "÷", "⁄"],
+            ":": [":", "÷", "∶"],
+            ";": [";", "⁏"],
+            "(": ["(", "[", "{"],
+            ")": [")", "]", "}"],
+            "$": ["$", "€", "₽", "£", "¥", "₩"],
+            "&": ["&", "№", "§", "¶", "†", "‡", "•", "◦"],
+            "@": ["@", "№", "©", "®", "™", "℗", "℠", "℡", "№"],
+            "\"": ["\"", "“", "”"],
+            ".": [".", "…"],
+            ",": [",", "‚", "„", "‛", "‟"],
+            "?": ["?", "¿"],
+            "!": ["!", "¡"],
+            "\'": ["\'", "‘"],
+        ])
+    
+    static let secondaryPunctuation = KeyboardLayouts(
+        keys: [
+            ["[", "]", "{", "}", "#", "%", "^", "*", "+", "="],
+            ["_", "\\", "|", "~", "<", ">", "€", "£", "¥", "•"],
+            ["123", ".", ",", "?", "!", "\'", "backspace"],
+            ["ABC", "globe", "space", "return"]
+        ],
+        subchars: [
+            "{": ["{", "(", "["],
+            "}": ["}", ")", "["],
+            "#": ["#", "№"],
+            "%": ["%", "‰"],
+            "^": ["^", "↑", "↓", "↕"],
+            "*": ["*", "×", "⋅", "∙"],
+            "+": ["+", "±", "∓", "∔"],
+            "=": ["=", "≠", "≡", "≢"],
+            "_": ["_", "‾", "¯"],
+            "\\": ["/", "|"],
+            "|": ["|", "¦", "‖"],
+            "~": ["~", "˜", "˜", "˜", "˜"],
+            "<": ["<", "≤", "≲"],
+            ">": [">", "≥", "≳"],
+            "€": ["$", "€", "₽", "£", "¥", "₩"],
+            "£": ["$", "€", "₽", "£", "¥", "₩"],
+            "₽": ["$", "€", "₽", "£", "¥", "₩"],
+            "•": ["•", "◦"],
+            ".": [".", "…", "‥"],
+            ",": [",", "‚", "„", "‛", "‟"],
+            "?": ["?", "¿", "‽", "⁇", "⁈", "⁉"],
+            "!": ["!", "¡", "‼", "⁉", "⁈", "⁇"],
+            "\'": ["\'", "‘", "’", "‚", "‛", "‹", "›"],
+        ])
 }

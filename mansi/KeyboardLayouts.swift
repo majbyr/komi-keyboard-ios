@@ -1,60 +1,121 @@
-//
-//  KeyboardViewController.swift
-//  mansi
-//
-//  Created by Aleksei Ivanov on 04.07.2024.
-//
+// KeyboardLayouts.swift
 
-import UIKit
-
-class KeyboardViewController: UIInputViewController {
-
-    @IBOutlet var nextKeyboardButton: UIButton!
+struct KeyboardLayouts {
+    var keys: [[String]]
+    var hints: [String:String] = [:]
+    var subchars: [String:[String]] = [:]
     
-    override func updateViewConstraints() {
-        super.updateViewConstraints()
-        
-        // Add custom view sizing constraints here
-    }
+    static let main = KeyboardLayouts(
+//        keys: [
+//            ["й", "ц", "у", "к", "е", "н", "г", "щ", "ъ", "з", "х",],
+//            ["ф", "ы", "в", "а", "п", "р", "о", "л", "д", "э", "̄"],
+//            ["shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", "backspace"],
+//            ["123", "globe", "space", "return"]
+//        ],
+        keys: [
+            ["й", "у", "к", "е", "ё", "н", "ӈ", "щ", "х"],
+            ["ы", "в", "а", "п", "р", "о", "л", "ъ", "э"],
+            ["shift", "я", "с", "м", "и", "т", "ь", "ю", "backspace"],
+            ["123", "globe", "space", "return"]
+        ],
+        hints: [
+            "а": "а̄",
+            "щ": "ш",
+            "е": "ё",
+            "и": "ӣ",
+            "о": "о̄",
+            "з": "ж",
+            "н": "ӈ",
+            "у": "ӯ",
+            "ы": "ы̄",
+            "э": "э̄",
+            "ю": "ю̄",
+            "я": "я̄",
+        ],
+        subchars: [
+            "а": ["а̄"],
+            "е": ["ё", "е̄", "ё̄"],
+            "и": ["ӣ", "й"],
+            "й": ["ӣ"],
+            "з": ["ж"],
+            "н": ["ӈ"],
+            "о": ["о̄"],
+            "у": ["ӯ"],
+            "щ": ["ш"],
+            "э": ["э̄"],
+            "ъ": ["ь"],
+            "ы": ["ы̄"],
+            "ь": ["ъ"],
+            "ю": ["ю̄"],
+            "я": ["я̄"]
+        ]
+    )
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Perform custom UI setup here
-        self.nextKeyboardButton = UIButton(type: .system)
-        
-        self.nextKeyboardButton.setTitle(NSLocalizedString("Next Keyboard", comment: "Title for 'Next Keyboard' button"), for: [])
-        self.nextKeyboardButton.sizeToFit()
-        self.nextKeyboardButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.nextKeyboardButton.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
-        
-        self.view.addSubview(self.nextKeyboardButton)
-        
-        self.nextKeyboardButton.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        self.nextKeyboardButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-    }
+    static let punctuation = KeyboardLayouts(
+        keys: [
+            ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
+            ["-", "/", ":", ";", "(", ")", "$", "&", "@", "\""],
+            ["#+=", ".", ",", "?", "!", "\'", "backspace"],
+            ["ABC", "globe", "space", "return"]
+        ],
+        subchars: [
+            "1": ["1", "¹"],
+            "2": ["2", "²"],
+            "3": ["3", "³"],
+            "4": ["4", "¼"],
+            "5": ["5", "½"],
+            "6": ["6", "¾"],
+            "7": ["7", "⅞"],
+            "8": ["8", "∞"],
+            "9": ["9", "°"],
+            "0": ["0", "º"],
+            "-": ["-", "–", "—", "−", "_"],
+            "/": ["/", "÷", "⁄"],
+            ":": [":", "÷", "∶"],
+            ";": [";", "⁏"],
+            "(": ["(", "[", "{"],
+            ")": [")", "]", "}"],
+            "$": ["$", "€", "₽", "£", "¥", "₩"],
+            "&": ["&", "№", "§", "¶", "†", "‡", "•", "◦"],
+            "@": ["@", "№", "©", "®", "™", "℗", "℠", "℡", "№"],
+            "\"": ["\"", "“", "”"],
+            ".": [".", "…"],
+            ",": [",", "‚", "„", "‛", "‟"],
+            "?": ["?", "¿"],
+            "!": ["!", "¡"],
+            "\'": ["\'", "‘"],
+        ])
     
-    override func viewWillLayoutSubviews() {
-        self.nextKeyboardButton.isHidden = !self.needsInputModeSwitchKey
-        super.viewWillLayoutSubviews()
-    }
-    
-    override func textWillChange(_ textInput: UITextInput?) {
-        // The app is about to change the document's contents. Perform any preparation here.
-    }
-    
-    override func textDidChange(_ textInput: UITextInput?) {
-        // The app has just changed the document's contents, the document context has been updated.
-        
-        var textColor: UIColor
-        let proxy = self.textDocumentProxy
-        if proxy.keyboardAppearance == UIKeyboardAppearance.dark {
-            textColor = UIColor.white
-        } else {
-            textColor = UIColor.black
-        }
-        self.nextKeyboardButton.setTitleColor(textColor, for: [])
-    }
-
+    static let secondaryPunctuation = KeyboardLayouts(
+        keys: [
+            ["[", "]", "{", "}", "#", "%", "^", "*", "+", "="],
+            ["_", "\\", "|", "~", "<", ">", "€", "£", "¥", "•"],
+            ["123", ".", ",", "?", "!", "\'", "backspace"],
+            ["ABC", "globe", "space", "return"]
+        ],
+        subchars: [
+            "{": ["{", "(", "["],
+            "}": ["}", ")", "["],
+            "#": ["#", "№"],
+            "%": ["%", "‰"],
+            "^": ["^", "↑", "↓", "↕"],
+            "*": ["*", "×", "⋅", "∙"],
+            "+": ["+", "±", "∓", "∔"],
+            "=": ["=", "≠", "≡", "≢"],
+            "_": ["_", "‾", "¯"],
+            "\\": ["/", "|"],
+            "|": ["|", "¦", "‖"],
+            "~": ["~", "˜", "˜", "˜", "˜"],
+            "<": ["<", "≤", "≲"],
+            ">": [">", "≥", "≳"],
+            "€": ["$", "€", "₽", "£", "¥", "₩"],
+            "£": ["$", "€", "₽", "£", "¥", "₩"],
+            "₽": ["$", "€", "₽", "£", "¥", "₩"],
+            "•": ["•", "◦"],
+            ".": [".", "…", "‥"],
+            ",": [",", "‚", "„", "‛", "‟"],
+            "?": ["?", "¿", "‽", "⁇", "⁈", "⁉"],
+            "!": ["!", "¡", "‼", "⁉", "⁈", "⁇"],
+            "\'": ["\'", "‘", "’", "‚", "‛", "‹", "›"],
+        ])
 }

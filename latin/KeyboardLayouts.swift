@@ -28,7 +28,6 @@ struct KeyboardLayouts {
 
             "z":"ź",
             "c":"ć",
-            "v":"ź",
             "n":"ń",
 
             "ö":"õ"

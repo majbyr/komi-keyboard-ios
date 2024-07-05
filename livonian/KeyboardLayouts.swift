@@ -1,60 +1,128 @@
-//
-//  KeyboardViewController.swift
-//  livonian
-//
-//  Created by Aleksei Ivanov on 05.07.2024.
-//
+// KeyboardLayouts.swift
 
-import UIKit
+struct KeyboardLayouts {
+    var keys: [[String]]
+    var hints: [String:String] = [:]
+    var subchars: [String:[String]] = [:]
+    
+    static let main = KeyboardLayouts(
+        keys: [
+            ["q", "w", "e", "r", "t", "y", "u", "i", "o", "ȯ", "p"],
+            ["a", "s", "d", "f", "g", "h", "j", "k", "l", "õ", "ä"],
+            ["shift", "z", "x", "c", "v", "b", "n", "m", "backspace"],
+            ["123", "globe", ".", "space", ",", "return"]
+        ],
+        hints: [
+            "e":"ē",
+            "r":"ŗ",
+            "t":"ț",
+            "y": "ȳ",
+            "i": "ī",
+            "o": "ō",
+            "ȯ": "ȱ",
+            "u": "ū",
+            
+            "a": "ā",
+            "s":"š",
+            "d":"d̦",
+            "l":"ļ",
+            "õ": "ȭ",
+            "ä": "ǟ",
 
-class KeyboardViewController: UIInputViewController {
+            "z":"ž",
+            "n":"ņ",
 
-    @IBOutlet var nextKeyboardButton: UIButton!
-    
-    override func updateViewConstraints() {
-        super.updateViewConstraints()
+        ],
         
-        // Add custom view sizing constraints here
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Perform custom UI setup here
-        self.nextKeyboardButton = UIButton(type: .system)
-        
-        self.nextKeyboardButton.setTitle(NSLocalizedString("Next Keyboard", comment: "Title for 'Next Keyboard' button"), for: [])
-        self.nextKeyboardButton.sizeToFit()
-        self.nextKeyboardButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.nextKeyboardButton.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
-        
-        self.view.addSubview(self.nextKeyboardButton)
-        
-        self.nextKeyboardButton.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        self.nextKeyboardButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-    }
-    
-    override func viewWillLayoutSubviews() {
-        self.nextKeyboardButton.isHidden = !self.needsInputModeSwitchKey
-        super.viewWillLayoutSubviews()
-    }
-    
-    override func textWillChange(_ textInput: UITextInput?) {
-        // The app is about to change the document's contents. Perform any preparation here.
-    }
-    
-    override func textDidChange(_ textInput: UITextInput?) {
-        // The app has just changed the document's contents, the document context has been updated.
-        
-        var textColor: UIColor
-        let proxy = self.textDocumentProxy
-        if proxy.keyboardAppearance == UIKeyboardAppearance.dark {
-            textColor = UIColor.white
-        } else {
-            textColor = UIColor.black
-        }
-        self.nextKeyboardButton.setTitleColor(textColor, for: [])
-    }
+        subchars: [
+            "e": ["ē"],
+            "r": ["ŗ"],
+            "t": ["ț"],
+            "y": ["ȳ"],
+            "i": ["ī"],
+            "o": ["ō", "ȯ", "ȱ", "ö", "ȫ", "õ", "ȭ"],
+            "ȯ": ["ȱ", "ö", "ȫ", "õ", "ȭ"],
+            "u": ["ū"],
 
+            "a": ["ā", "ä", "ǟ"],
+            "s": ["š"],
+            "d": ["d̦"],
+            "l": ["ļ"],
+            "õ": ["ȭ", "ȯ", "ȱ", "ö", "ȫ"],
+            "ä": ["ǟ"],
+
+            "z": ["ž"],
+            "n": ["ņ"],
+            
+            ".": [",", "?", "!"]
+        
+        ])
+    
+    static let punctuation = KeyboardLayouts(
+        keys: [
+            ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
+            ["-", "/", ":", ";", "(", ")", "$", "&", "@", "\""],
+            ["#+=", ".", ",", "?", "!", "\'", "backspace"],
+            ["ABC", "globe", "space", "return"]
+        ],
+        subchars: [
+            "1": ["1", "¹"],
+            "2": ["2", "²"],
+            "3": ["3", "³"],
+            "4": ["4", "¼"],
+            "5": ["5", "½"],
+            "6": ["6", "¾"],
+            "7": ["7", "⅞"],
+            "8": ["8", "∞"],
+            "9": ["9", "°"],
+            "0": ["0", "º"],
+            "-": ["-", "–", "—", "−", "_"],
+            "/": ["/", "÷", "⁄"],
+            ":": [":", "÷", "∶"],
+            ";": [";", "⁏"],
+            "(": ["(", "[", "{"],
+            ")": [")", "]", "}"],
+            "$": ["$", "€", "₽", "£", "¥", "₩"],
+            "&": ["&", "№", "§", "¶", "†", "‡", "•", "◦"],
+            "@": ["@", "№", "©", "®", "™", "℗", "℠", "℡", "№"],
+            "\"": ["\"", "“", "”"],
+            ".": [".", "…"],
+            ",": [",", "‚", "„", "‛", "‟"],
+            "?": ["?", "¿"],
+            "!": ["!", "¡"],
+            "\'": ["\'", "‘"],
+        ])
+    
+    static let secondaryPunctuation = KeyboardLayouts(
+        keys: [
+            ["[", "]", "{", "}", "#", "%", "^", "*", "+", "="],
+            ["_", "\\", "|", "~", "<", ">", "€", "£", "¥", "•"],
+            ["123", ".", ",", "?", "!", "\'", "backspace"],
+            ["ABC", "globe", "space", "return"]
+        ],
+        subchars: [
+            "{": ["{", "(", "["],
+            "}": ["}", ")", "["],
+            "#": ["#", "№"],
+            "%": ["%", "‰"],
+            "^": ["^", "↑", "↓", "↕"],
+            "*": ["*", "×", "⋅", "∙"],
+            "+": ["+", "±", "∓", "∔"],
+            "=": ["=", "≠", "≡", "≢"],
+            "_": ["_", "‾", "¯"],
+            "\\": ["/", "|"],
+            "|": ["|", "¦", "‖"],
+            "~": ["~", "˜", "˜", "˜", "˜"],
+            "<": ["<", "≤", "≲"],
+            ">": [">", "≥", "≳"],
+            "€": ["$", "€", "₽", "£", "¥", "₩"],
+            "£": ["$", "€", "₽", "£", "¥", "₩"],
+            "₽": ["$", "€", "₽", "£", "¥", "₩"],
+            "•": ["•", "◦"],
+            ".": [".", "…", "‥"],
+            ",": [",", "‚", "„", "‛", "‟"],
+            "?": ["?", "¿", "‽", "⁇", "⁈", "⁉"],
+            "!": ["!", "¡", "‼", "⁉", "⁈", "⁇"],
+            "\'": ["\'", "‘", "’", "‚", "‛", "‹", "›"],
+        ])
 }

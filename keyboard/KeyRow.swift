@@ -90,7 +90,11 @@ class KeyRow: UIView {
         } else if !isSpaceRow && keys.count <= 7 {
             return 1.0 / CGFloat(keys.count)
         } else if specialKey {
-            return keys.count == biggestRowLength ? standardMultiplier : 1.25 * standardMultiplier
+            if characterKeysCount + 2 == biggestRowLength {
+                return standardMultiplier
+            }
+            return 1.25 * standardMultiplier
+            
         } else if key is InvisibleKey {
             if isSpaceRow {
                 return 0
