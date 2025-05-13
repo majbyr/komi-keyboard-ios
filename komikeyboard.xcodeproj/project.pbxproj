@@ -16,7 +16,15 @@
 		5F24A0D22C36D81A00861EDF /* InvisibleKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F24A0D12C36D81A00861EDF /* InvisibleKey.swift */; };
 		5F24A0D32C36D81A00861EDF /* InvisibleKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F24A0D12C36D81A00861EDF /* InvisibleKey.swift */; };
 		5F24A0D42C36D81A00861EDF /* InvisibleKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F24A0D12C36D81A00861EDF /* InvisibleKey.swift */; };
+		5F35D8A42DD30F0700806C33 /* PredictionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F35D8A32DD30EFB00806C33 /* PredictionEngine.swift */; };
+		5F35D8A52DD30F0700806C33 /* PredictionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F35D8A32DD30EFB00806C33 /* PredictionEngine.swift */; };
+		5F35D8A62DD30F0700806C33 /* PredictionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F35D8A32DD30EFB00806C33 /* PredictionEngine.swift */; };
 		5F3CA7F92BDAF8CF00A3B96F /* SubcharPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3CA7F82BDAF8CF00A3B96F /* SubcharPopup.swift */; };
+		5F848FAE2DD32D3A00DB49D4 /* completion_probs.json in Resources */ = {isa = PBXBuildFile; fileRef = 5F848FA12DD32D3A00DB49D4 /* completion_probs.json */; };
+		5F848FAF2DD32D3A00DB49D4 /* bigram_probs.json in Resources */ = {isa = PBXBuildFile; fileRef = 5F848F9F2DD32D3A00DB49D4 /* bigram_probs.json */; };
+		5F848FB02DD32D3A00DB49D4 /* trigram_probs.json in Resources */ = {isa = PBXBuildFile; fileRef = 5F848FA22DD32D3A00DB49D4 /* trigram_probs.json */; };
+		5F848FB12DD32D3A00DB49D4 /* cap_patterns_probs.json in Resources */ = {isa = PBXBuildFile; fileRef = 5F848FA02DD32D3A00DB49D4 /* cap_patterns_probs.json */; };
+		5F848FB22DD32D3A00DB49D4 /* unigram_probs.json in Resources */ = {isa = PBXBuildFile; fileRef = 5F848FA32DD32D3A00DB49D4 /* unigram_probs.json */; };
 		5F86F9ED2BD9FC2000F64479 /* MenuStackView.swift .swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F86F9E92BD9FC2000F64479 /* MenuStackView.swift .swift */; };
 		5F86F9EE2BD9FC2000F64479 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F86F9EA2BD9FC2000F64479 /* Extensions.swift */; };
 		5F86F9EF2BD9FC2000F64479 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F86F9EB2BD9FC2000F64479 /* TextField.swift */; };
@@ -125,7 +133,13 @@
 		5F244F362BDE333300BEEF06 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		5F244F3A2BDE69B800BEEF06 /* ToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarView.swift; sourceTree = "<group>"; };
 		5F24A0D12C36D81A00861EDF /* InvisibleKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvisibleKey.swift; sourceTree = "<group>"; };
+		5F35D8A32DD30EFB00806C33 /* PredictionEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionEngine.swift; sourceTree = "<group>"; };
 		5F3CA7F82BDAF8CF00A3B96F /* SubcharPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcharPopup.swift; sourceTree = "<group>"; };
+		5F848F9F2DD32D3A00DB49D4 /* bigram_probs.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bigram_probs.json; sourceTree = "<group>"; };
+		5F848FA02DD32D3A00DB49D4 /* cap_patterns_probs.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cap_patterns_probs.json; sourceTree = "<group>"; };
+		5F848FA12DD32D3A00DB49D4 /* completion_probs.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = completion_probs.json; sourceTree = "<group>"; };
+		5F848FA22DD32D3A00DB49D4 /* trigram_probs.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trigram_probs.json; sourceTree = "<group>"; };
+		5F848FA32DD32D3A00DB49D4 /* unigram_probs.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = unigram_probs.json; sourceTree = "<group>"; };
 		5F86F9E92BD9FC2000F64479 /* MenuStackView.swift .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MenuStackView.swift .swift"; sourceTree = "<group>"; };
 		5F86F9EA2BD9FC2000F64479 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5F86F9EB2BD9FC2000F64479 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
@@ -201,6 +215,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F848F962DD3270000DB49D4 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				5F848F9F2DD32D3A00DB49D4 /* bigram_probs.json */,
+				5F848FA02DD32D3A00DB49D4 /* cap_patterns_probs.json */,
+				5F848FA12DD32D3A00DB49D4 /* completion_probs.json */,
+				5F848FA22DD32D3A00DB49D4 /* trigram_probs.json */,
+				5F848FA32DD32D3A00DB49D4 /* unigram_probs.json */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
 		5F8A91F72BDDC0E7003A279C /* locales */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,6 +323,7 @@
 				5F8A91F72BDDC0E7003A279C /* locales */,
 				5F86F9F92BD9FC2D00F64479 /* KeyboardLayouts.swift */,
 				5FD9DAD02BD9FB8B008D10B9 /* Info.plist */,
+				5F848F962DD3270000DB49D4 /* models */,
 			);
 			path = cyrillic;
 			sourceTree = "<group>";
@@ -326,6 +353,7 @@
 				5F86F9F32BD9FC2D00F64479 /* CharacterKey.swift */,
 				5F86F9F62BD9FC2D00F64479 /* SpecialKey.swift */,
 				5F24A0D12C36D81A00861EDF /* InvisibleKey.swift */,
+				5F35D8A32DD30EFB00806C33 /* PredictionEngine.swift */,
 			);
 			path = keyboard;
 			sourceTree = "<group>";
@@ -413,7 +441,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1510;
-				LastUpgradeCheck = 1510;
+				LastUpgradeCheck = 1630;
 				TargetAttributes = {
 					5F8A91FD2BDDC3A7003A279C = {
 						CreatedOnToolsVersion = 15.1;
@@ -494,6 +522,11 @@
 				5F8A92462BDDD16F003A279C /* Assets.xcassets in Resources */,
 				5F8A91F92BDDC106003A279C /* InfoPlist.xcstrings in Resources */,
 				5FFE9A302BE0533000B1A569 /* Assets.xcassets in Resources */,
+				5F848FAE2DD32D3A00DB49D4 /* completion_probs.json in Resources */,
+				5F848FAF2DD32D3A00DB49D4 /* bigram_probs.json in Resources */,
+				5F848FB02DD32D3A00DB49D4 /* trigram_probs.json in Resources */,
+				5F848FB12DD32D3A00DB49D4 /* cap_patterns_probs.json in Resources */,
+				5F848FB22DD32D3A00DB49D4 /* unigram_probs.json in Resources */,
 				5F244F382BDE333A00BEEF06 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -510,6 +543,7 @@
 				5F8A921B2BDDC3E7003A279C /* KeyboardHeightDetector.swift in Sources */,
 				5F24A0D32C36D81A00861EDF /* InvisibleKey.swift in Sources */,
 				5F8A921D2BDDC3E7003A279C /* KeyboardView.swift in Sources */,
+				5F35D8A42DD30F0700806C33 /* PredictionEngine.swift in Sources */,
 				5F8A92192BDDC3E7003A279C /* CustomKeyButton.swift in Sources */,
 				5F8A921E2BDDC3E7003A279C /* KeyboardViewController.swift in Sources */,
 				5F8A921A2BDDC3E7003A279C /* KeyBase.swift in Sources */,
@@ -531,6 +565,7 @@
 				5F8A923A2BDDC69A003A279C /* KeyboardHeightDetector.swift in Sources */,
 				5F24A0D42C36D81A00861EDF /* InvisibleKey.swift in Sources */,
 				5F8A923C2BDDC69A003A279C /* KeyBase.swift in Sources */,
+				5F35D8A62DD30F0700806C33 /* PredictionEngine.swift in Sources */,
 				5F8A923E2BDDC69A003A279C /* KeyboardViewController.swift in Sources */,
 				5F8A92372BDDC69A003A279C /* KeyPopup.swift in Sources */,
 				5F8A92392BDDC69A003A279C /* SubcharPopup.swift in Sources */,
@@ -567,6 +602,7 @@
 				5F86F9FE2BD9FC2D00F64479 /* KeyPopup.swift in Sources */,
 				5F24A0D22C36D81A00861EDF /* InvisibleKey.swift in Sources */,
 				5F86FA042BD9FC2D00F64479 /* KeyboardHeightDetector.swift in Sources */,
+				5F35D8A52DD30F0700806C33 /* PredictionEngine.swift in Sources */,
 				5F86FA032BD9FC2D00F64479 /* KeyboardLayouts.swift in Sources */,
 				5F86FA002BD9FC2D00F64479 /* SpecialKey.swift in Sources */,
 				5F86FA022BD9FC2D00F64479 /* CustomKeyButton.swift in Sources */,
@@ -628,7 +664,6 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
-				DEVELOPMENT_TEAM = RJL88SHRZC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = latin/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = latin;
@@ -658,7 +693,6 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
-				DEVELOPMENT_TEAM = RJL88SHRZC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = latin/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = latin;
@@ -688,7 +722,6 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
-				DEVELOPMENT_TEAM = RJL88SHRZC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = anbur/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = anbur;
@@ -718,7 +751,6 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
-				DEVELOPMENT_TEAM = RJL88SHRZC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = anbur/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = anbur;
@@ -780,6 +812,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = RJL88SHRZC;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -846,6 +879,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = RJL88SHRZC;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -871,12 +905,10 @@
 		5FD9DAC62BD9FB5F008D10B9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
-				DEVELOPMENT_TEAM = RJL88SHRZC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = mainapp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = mainapp;
@@ -907,12 +939,10 @@
 		5FD9DAC72BD9FB5F008D10B9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
-				DEVELOPMENT_TEAM = RJL88SHRZC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = mainapp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = mainapp;
@@ -945,7 +975,6 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
-				DEVELOPMENT_TEAM = RJL88SHRZC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = cyrillic/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = cyrillic;
@@ -975,7 +1004,6 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
-				DEVELOPMENT_TEAM = RJL88SHRZC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = cyrillic/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = cyrillic;

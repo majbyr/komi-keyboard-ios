@@ -4,7 +4,8 @@ import UIKit
 import AudioToolbox
 
 class KeyboardViewController: UIInputViewController {
-    
+    private let predictionEngine = PredictionEngine()
+
     @IBOutlet var mainKeyboardView: KeyboardView!
     @IBOutlet var punctuationKeyboardView: KeyboardView!
     @IBOutlet var secondaryPunctuationKeyboardView: KeyboardView!
@@ -48,6 +49,16 @@ class KeyboardViewController: UIInputViewController {
         pollTimer = nil
     }
 
+    func updatePredictions() {
+        guard let context = textDocumentProxy.documentContextBeforeInput else {
+            toolbarView.updateSuggestions([])
+            return
+        }
+        
+        let predictions = predictionEngine.getPredictions(for: context)
+        toolbarView.updateSuggestions(predictions)
+    }
+
     private func initializeKeyboardViews() {
         let needsGlobeKey = self.needsInputModeSwitchKey
         self.mainKeyboardView = KeyboardView(layout: .main, delegate: self, includeGlobeKey: needsGlobeKey)
@@ -89,6 +100,7 @@ class KeyboardViewController: UIInputViewController {
             keyboardView.leftAnchor.constraint(equalTo: view.leftAnchor),
             keyboardView.rightAnchor.constraint(equalTo: view.rightAnchor),
             keyboardView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            keyboardView.topAnchor.constraint(equalTo: toolbarView.bottomAnchor) // Add constraint to position below toolbar
         ])
         view.layoutIfNeeded()
     }
@@ -118,7 +130,11 @@ class KeyboardViewController: UIInputViewController {
     }
     
     private func removeAllSubviews() {
-        view.subviews.forEach { $0.removeFromSuperview() }
+        view.subviews.forEach { subview in
+            if !(subview is ToolbarView) {
+                subview.removeFromSuperview()
+            }
+        }
     }
     
     private func updateKeyboardLayout(for size: CGSize) {
@@ -152,6 +168,7 @@ class KeyboardViewController: UIInputViewController {
         removeAllSubviews()
         view.addSubview(punctuationKeyboardView)
         setupConstraintsForKeyboardView(punctuationKeyboardView)
+        view.bringSubviewToFront(toolbarView)
         isMainKeyboard = false
     }
     
@@ -162,6 +179,7 @@ class KeyboardViewController: UIInputViewController {
         removeAllSubviews()
         view.addSubview(currentKeyboardView)
         setupConstraintsForKeyboardView(currentKeyboardView)
+        view.bringSubviewToFront(toolbarView)
         isMainKeyboard = true
     }
     
@@ -169,6 +187,7 @@ class KeyboardViewController: UIInputViewController {
         removeAllSubviews()
         view.addSubview(secondaryPunctuationKeyboardView)
         setupConstraintsForKeyboardView(secondaryPunctuationKeyboardView)
+        view.bringSubviewToFront(toolbarView)
         isMainKeyboard = false
     }
     
@@ -266,7 +285,7 @@ extension KeyboardViewController: KeyDelegate {
             }
             startPollingForInputChanges()
         }
-        toolbarView.updatePredictions()
+        updatePredictions()
     }
     
     func handleCursorMove(cursorMovement: Int) {
@@ -327,6 +346,34 @@ extension KeyboardViewController: KeyDelegate {
             if !isLayoutShifted && !isLayoutCapsLocked {
                 toggleShift(on: true)
             }
+        }
+    }
+}
+
+extension KeyboardViewController {
+    func replaceCurrentWord(with newWord: String) {
+        guard let context = textDocumentProxy.documentContextBeforeInput else { return }
+        
+        if context.hasSuffix(" ") {
+            textDocumentProxy.insertText(newWord + " ")
+            updatePredictions()
+            return
+        }
+        
+        let words = context.split(separator: " ")
+        if let currentWord = words.last?.lowercased() {
+            let predictions = predictionEngine.getPredictions(for: currentWord)
+            let isNextWordPrediction = !predictions.contains(where: { $0.lowercased().hasPrefix(currentWord) })
+            
+            if isNextWordPrediction {
+                textDocumentProxy.insertText(" " + newWord + " ")
+            } else {
+                for _ in currentWord {
+                    textDocumentProxy.deleteBackward()
+                }
+                textDocumentProxy.insertText(newWord + " ")
+            }
+            updatePredictions()
         }
     }
 }

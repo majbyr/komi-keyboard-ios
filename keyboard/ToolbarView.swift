@@ -3,15 +3,17 @@ import UIKit
 class ToolbarView: UIView {
     
     private let hideKeyboardButton = UIButton(type: .system)
-    weak var keyboardViewController: KeyboardViewController? // Keep reference weak to avoid retain cycles
+    private var suggestionButtons: [UIButton] = []
+    private var separatorViews: [UIView] = []
+    weak var keyboardViewController: KeyboardViewController? 
 
     private let suggestionsStackView = UIStackView()
     private var suggestions: [String] = []
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureToolbar()
-        // configureSuggestionsView()
+        setupSuggestionButtons()
     }
 
     required init?(coder: NSCoder) {
@@ -40,6 +42,59 @@ class ToolbarView: UIView {
         ])
     }
 
+    private func setupSuggestionButtons() {
+        for _ in 0..<3 {
+            let button = UIButton()
+            button.setTitleColor(.dynamicTextColor, for: .normal)
+            button.titleLabel?.font = .systemFont(ofSize: 16)
+            button.titleLabel?.adjustsFontSizeToFitWidth = true
+            button.addTarget(self, action: #selector(suggestionTapped(_:)), for: .touchUpInside)
+            button.translatesAutoresizingMaskIntoConstraints = false
+            
+            addSubview(button)
+            suggestionButtons.append(button)
+        }
+        
+        for _ in 0..<2 {
+            let separator = UIView()
+            separator.backgroundColor = .separator
+            separator.translatesAutoresizingMaskIntoConstraints = false
+            addSubview(separator)
+            separatorViews.append(separator)
+        }
+        
+        let padding: CGFloat = 0
+        
+        for (index, button) in suggestionButtons.enumerated() {
+            NSLayoutConstraint.activate([
+                button.topAnchor.constraint(equalTo: topAnchor, constant: padding),
+                button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding),
+                button.heightAnchor.constraint(equalTo: heightAnchor, constant: -padding * 2)
+            ])
+            
+            if index == 0 {
+                button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding).isActive = true
+            } else {
+                button.leadingAnchor.constraint(equalTo: separatorViews[index - 1].trailingAnchor, constant: padding).isActive = true
+                button.widthAnchor.constraint(equalTo: suggestionButtons[0].widthAnchor).isActive = true
+            }
+            
+            if index < separatorViews.count {
+                let separator = separatorViews[index]
+                NSLayoutConstraint.activate([
+                    separator.leadingAnchor.constraint(equalTo: button.trailingAnchor, constant: padding),
+                    separator.centerYAnchor.constraint(equalTo: centerYAnchor),
+                    separator.widthAnchor.constraint(equalToConstant: 1),
+                    separator.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.6)
+                ])
+            }
+        }
+        
+        if let lastButton = suggestionButtons.last {
+            lastButton.trailingAnchor.constraint(equalTo: hideKeyboardButton.leadingAnchor, constant: -padding).isActive = true
+        }
+    }
+
     @objc private func hideKeyboard() {
         keyboardViewController?.dismissKeyboard()
     }
@@ -48,47 +103,26 @@ class ToolbarView: UIView {
         hideKeyboardButton.isHidden = hidden
     }
 
-    private func configureSuggestionsView() {
-        suggestionsStackView.axis = .horizontal
-        suggestionsStackView.distribution = .fillEqually
-        suggestionsStackView.spacing = 10
-        suggestionsStackView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(suggestionsStackView)
-
-        NSLayoutConstraint.activate([
-            suggestionsStackView.leftAnchor.constraint(equalTo: leftAnchor),
-            suggestionsStackView.rightAnchor.constraint(equalTo: hideKeyboardButton.leftAnchor, constant: -10),
-            suggestionsStackView.topAnchor.constraint(equalTo: topAnchor),
-            suggestionsStackView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
-    }
-
-    func updateSuggestions(words: [String]) {
-        suggestionsStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        for word in words {
-            let button = UIButton(type: .system)
-            button.setTitle(word, for: .normal)
-            button.addTarget(self, action: #selector(suggestionTapped(_:)), for: .touchUpInside)
-            suggestionsStackView.addArrangedSubview(button)
+    func updateSuggestions(_ suggestions: [String]) {
+        for (index, button) in suggestionButtons.enumerated() {
+            UIView.animate(withDuration: 0.10, animations: {
+                button.alpha = 0.5
+            }, completion: { _ in
+                if index < suggestions.count {
+                    button.setTitle(suggestions[index], for: .normal)
+                    button.isHidden = false
+                    UIView.animate(withDuration: 0.10) {
+                        button.alpha = 1
+                    }
+                } else {
+                    button.isHidden = true
+                }
+            })
         }
     }
 
     @objc private func suggestionTapped(_ sender: UIButton) {
-        guard let title = sender.title(for: .normal) else { return }
-        // Delegate or callback to insert the word
-        keyboardViewController?.textDocumentProxy.insertText(title + " ")
-    }
-    
-    func updatePredictions() {
-        guard let currentText = keyboardViewController?.textDocumentProxy.documentContextBeforeInput else { return }
-        let lastWord = currentText.components(separatedBy: CharacterSet.whitespacesAndNewlines).last ?? ""
-        let suggestions = getPredictions(for: lastWord)
-        self.updateSuggestions(words: suggestions)
-    }
-
-    private func getPredictions(for input: String) -> [String] {
-        // Placeholder function to simulate predictions
-        let allWords = ["чолӧм", "ме", "кӧсъя", "лун", "быд", "гиж", "аски"]
-        return allWords.filter { $0.hasPrefix(input.lowercased()) }
+        guard let word = sender.title(for: .normal) else { return }
+        keyboardViewController?.replaceCurrentWord(with: word)
     }
 }
