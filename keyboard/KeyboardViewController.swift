@@ -16,7 +16,6 @@ class KeyboardViewController: UIInputViewController {
     
     var keyboardHeightConstraint: NSLayoutConstraint?
     var deleteTimer: Timer?
-    var pollTimer: Timer?
     
     let keyboardHeight: CGFloat = Calculator.getKeyboardHeight()
     let toolbarHeight: CGFloat = Calculator.getToolbar()
@@ -28,27 +27,18 @@ class KeyboardViewController: UIInputViewController {
         initilizeToolbarView()
         initializeKeyboardViews()
         handleAutoCapitalization()
-        startPollingForInputChanges()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        stopPollingForInputChanges()
     }
     
-    private func startPollingForInputChanges() {
-        pollTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(checkInputChanges), userInfo: nil, repeats: true)
-    }
-    
-    @objc private func checkInputChanges() {
+    override func textDidChange(_ textInput: UITextInput?) {
+        super.textDidChange(textInput)
         handleAutoCapitalization()
+        updatePredictions()
     }
-
-    private func stopPollingForInputChanges() {
-        pollTimer?.invalidate()
-        pollTimer = nil
-    }
-
+    
     func updatePredictions() {
         guard let context = textDocumentProxy.documentContextBeforeInput else {
             toolbarView.updateSuggestions([])
@@ -216,9 +206,6 @@ class KeyboardViewController: UIInputViewController {
 
 extension KeyboardViewController: KeyDelegate {
     func startContinuousDelete() {
-        if (pollTimer == nil) {
-            startPollingForInputChanges()
-        }
         
         deleteTimer?.invalidate()
         deleteTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
@@ -242,22 +229,19 @@ extension KeyboardViewController: KeyDelegate {
     }
     
     func keyDidTap(character: String) {
-        stopPollingForInputChanges()
         switch character {
         case "backspace":
             textDocumentProxy.deleteBackward()
-            startPollingForInputChanges()
+            handleAutoCapitalization()
         case "space":
             textDocumentProxy.insertText(" ")
             if !isMainKeyboard {
                 switchToMainKeyboard()
             }
-            startPollingForInputChanges()
-
+            handleAutoCapitalization()
         case "return":
             textDocumentProxy.insertText("\n")
-            startPollingForInputChanges()
-
+            handleAutoCapitalization()
         case "globe":
             break
 
@@ -280,7 +264,7 @@ extension KeyboardViewController: KeyDelegate {
             if isLayoutShifted && !isLayoutCapsLocked {
                 toggleShift(on: false)
             }
-            startPollingForInputChanges()
+            handleAutoCapitalization()
         }
         updatePredictions()
     }
@@ -297,6 +281,7 @@ extension KeyboardViewController: KeyDelegate {
         switch character {
         case "backspace":
             textDocumentProxy.deleteBackward()
+            handleAutoCapitalization()
         case "space":
             handleDoubleTapSpace()
         case "return":
@@ -332,7 +317,9 @@ extension KeyboardViewController: KeyDelegate {
             let trimmedContext = context.trimmingCharacters(in:.whitespacesAndNewlines)
             if trimmedContext.isEmpty ||
                 context.last == "\n" ||
-                (context.suffix(2) == ". " || context.suffix(2) == "! " || context.suffix(2) == "? ") {
+                (context.suffix(2) == ". " ||
+                 context.suffix(2) == "! " ||
+                 context.suffix(2) == "? ") {
                 toggleShift(on: true)
             } else {
                 if isLayoutShifted && !isLayoutCapsLocked {
