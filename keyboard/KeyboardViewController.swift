@@ -168,7 +168,6 @@ class KeyboardViewController: UIInputViewController {
         removeAllSubviews()
         view.addSubview(punctuationKeyboardView)
         setupConstraintsForKeyboardView(punctuationKeyboardView)
-        view.bringSubviewToFront(toolbarView)
         isMainKeyboard = false
     }
     
@@ -179,7 +178,6 @@ class KeyboardViewController: UIInputViewController {
         removeAllSubviews()
         view.addSubview(currentKeyboardView)
         setupConstraintsForKeyboardView(currentKeyboardView)
-        view.bringSubviewToFront(toolbarView)
         isMainKeyboard = true
     }
     
@@ -187,7 +185,6 @@ class KeyboardViewController: UIInputViewController {
         removeAllSubviews()
         view.addSubview(secondaryPunctuationKeyboardView)
         setupConstraintsForKeyboardView(secondaryPunctuationKeyboardView)
-        view.bringSubviewToFront(toolbarView)
         isMainKeyboard = false
     }
     
