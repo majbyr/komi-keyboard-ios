@@ -132,7 +132,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @objc private func openGitHub() {
         // Implementation to open GitHub link
-        let gitHubUrl = URL(string: "https://github.com/AlexDjSun/komi-keyboard-ios")
+        let gitHubUrl = URL(string: "https://github.com/majbyr/komi-keyboard-ios")
         UIApplication.shared.open(gitHubUrl!)
     }
     
