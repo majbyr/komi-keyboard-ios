@@ -39,11 +39,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegat
         contentView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(contentView)
 
-        // Add headerView as first subview of contentView
         headerConfigurator.configureHeaderInContentView()
         contentView.addSubview(headerConfigurator.headerView)
 
-        // Setup constraints for scrollView
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -51,7 +49,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegat
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
 
-        // Setup constraints for contentView
         NSLayoutConstraint.activate([
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
@@ -99,10 +96,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegat
     }
     
     private func setupConstraints() {
-        // Header height constraint (dynamic)
         headerHeightConstraint = headerConfigurator.headerView.heightAnchor.constraint(equalToConstant: maxHeaderHeight)
         headerHeightConstraint.isActive = true
-        // Header top constraint
         headerConfigurator.headerView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         headerConfigurator.headerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         headerConfigurator.headerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true

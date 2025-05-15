@@ -7,20 +7,17 @@ class HeaderViewConfigurator {
     let navBarTitleLabel = UILabel()
     private var labelFontSizeMax: CGFloat = 34
     private var labelFontSizeMin: CGFloat = 18
-    // Make navBarHeight public so it can be accessed from ViewController
     var navBarHeight: CGFloat = 95
 
-    // Call this from ViewController after navBarView is added to main view, headerView to scrollView.contentView
     func configureNavBar(in view: UIView) {
         navBarView.backgroundColor = .systemBackground
         navBarView.layer.zPosition = 10
-        navBarView.alpha = 0 // Hidden by default
+        navBarView.alpha = 0
         view.addSubview(navBarView)
         navBarTitleLabel.text = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
         navBarTitleLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         navBarTitleLabel.textAlignment = .center
         navBarView.addSubview(navBarTitleLabel)
-        // Add bottom border to navBarView
         let navBarBottomBorder = UIView()
         navBarBottomBorder.backgroundColor = UIColor.separator
         navBarView.addSubview(navBarBottomBorder)
@@ -43,7 +40,6 @@ class HeaderViewConfigurator {
         ])
     }
 
-    // Call this from ViewController after headerView is added to contentView
     func configureHeaderInContentView() {
         appNameLabel.text = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
         appNameLabel.font = UIFont.systemFont(ofSize: labelFontSizeMax, weight: .bold)
