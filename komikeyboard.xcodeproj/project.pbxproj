@@ -466,6 +466,7 @@
 				Base,
 				ru,
 				kv,
+				fi,
 			);
 			mainGroup = 5FD9DAA82BD9FB5E008D10B9;
 			productRefGroup = 5FD9DAB22BD9FB5E008D10B9 /* Products */;

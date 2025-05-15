@@ -176,7 +176,6 @@
       }
     },
     "TestInput" : {
-      "comment" : "Поле ввода для тестирования",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {

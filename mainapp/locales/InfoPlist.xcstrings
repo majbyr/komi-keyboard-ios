@@ -10,6 +10,12 @@
             "value" : "Komi Keyboard"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Komi Näppäimistö"
+          }
+        },
         "kv" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31,6 +37,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Komi Keyboard"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Komi Näppäimistö"
           }
         },
         "kv" : {
