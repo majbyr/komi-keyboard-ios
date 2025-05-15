@@ -1,36 +1,60 @@
 import UIKit
 
-struct HeaderViewConfigurator {
-    private let headerView = UIView()
-    private let appNameLabel = UILabel()
+class HeaderViewConfigurator {
+    let headerView = UIView()
+    let appNameLabel = UILabel()
+    let navBarView = UIView()
+    let navBarTitleLabel = UILabel()
+    private var labelFontSizeMax: CGFloat = 34
+    private var labelFontSizeMin: CGFloat = 18
+    // Make navBarHeight public so it can be accessed from ViewController
+    var navBarHeight: CGFloat = 95
 
-    init(view: UIView) {
-        configureHeaderView(in: view)
+    // Call this from ViewController after navBarView is added to main view, headerView to scrollView.contentView
+    func configureNavBar(in view: UIView) {
+        navBarView.backgroundColor = .systemBackground
+        navBarView.layer.zPosition = 10
+        navBarView.alpha = 0 // Hidden by default
+        view.addSubview(navBarView)
+        navBarTitleLabel.text = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
+        navBarTitleLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        navBarTitleLabel.textAlignment = .center
+        navBarView.addSubview(navBarTitleLabel)
+        // Add bottom border to navBarView
+        let navBarBottomBorder = UIView()
+        navBarBottomBorder.backgroundColor = UIColor.separator
+        navBarView.addSubview(navBarBottomBorder)
+        navBarBottomBorder.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            navBarBottomBorder.leadingAnchor.constraint(equalTo: navBarView.leadingAnchor),
+            navBarBottomBorder.trailingAnchor.constraint(equalTo: navBarView.trailingAnchor),
+            navBarBottomBorder.bottomAnchor.constraint(equalTo: navBarView.bottomAnchor),
+            navBarBottomBorder.heightAnchor.constraint(equalToConstant: 1 / UIScreen.main.scale)
+        ])
+        navBarView.translatesAutoresizingMaskIntoConstraints = false
+        navBarTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            navBarView.topAnchor.constraint(equalTo: view.topAnchor),
+            navBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            navBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            navBarView.heightAnchor.constraint(equalToConstant: navBarHeight),
+            navBarTitleLabel.centerXAnchor.constraint(equalTo: navBarView.centerXAnchor),
+            navBarTitleLabel.bottomAnchor.constraint(equalTo: navBarView.bottomAnchor, constant: -10)
+        ])
     }
 
-    private func configureHeaderView(in view: UIView) {
-        view.addSubview(headerView)
+    // Call this from ViewController after headerView is added to contentView
+    func configureHeaderInContentView() {
         appNameLabel.text = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
-        appNameLabel.font = .preferredFont(forTextStyle: .largeTitle).bold()
+        appNameLabel.font = UIFont.systemFont(ofSize: labelFontSizeMax, weight: .bold)
         appNameLabel.textAlignment = .left
         headerView.addSubview(appNameLabel)
-
-        setConstraints(in: view)
-    }
-
-    private func setConstraints(in view: UIView) {
         headerView.translatesAutoresizingMaskIntoConstraints = false
         appNameLabel.translatesAutoresizingMaskIntoConstraints = false
-
         NSLayoutConstraint.activate([
-            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: 80),
-            
             appNameLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
-            appNameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            appNameLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
+            appNameLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
+            appNameLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -8)
         ])
     }
 }
