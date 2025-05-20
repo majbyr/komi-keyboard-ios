@@ -260,6 +260,9 @@ extension KeyboardViewController: KeyDelegate {
         case "#+=":
             switchToSecondaryPunctuationKeyboard()
         default:
+
+            let needToHandleCharCase = character.count > 1 && isLayoutShifted && !isLayoutCapsLocked
+            let character = needToHandleCharCase ? String(character.prefix(1) + character.dropFirst().lowercased()) : character
             textDocumentProxy.insertText(character)
             if isLayoutShifted && !isLayoutCapsLocked {
                 toggleShift(on: false)
