@@ -61,8 +61,8 @@ def preprocess_corpus(input_file, output_dir):
                 sentence_start = True
                 continue
             
-            # Tokenize preserving case
-            tokens = re.sub(r'[^\w\s]', '', original_line).split()
+            # Tokenize preserving case and hyphens
+            tokens = re.sub(r'[^\w\s\-]', '', original_line).split()
             if len(tokens) < 1:
                 continue
             
